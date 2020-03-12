@@ -128,7 +128,7 @@ ENV JETTY_HOME=/opt/jetty-home \
     JETTY_KEYSTORE_PASSWORD=storepwd \
     JETTY_KEYSTORE_PATH=etc/keystore \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
-    PATH=$PATH:$JRE_HOME/bin
+    PATH=$PATH:$JAVA_HOME/bin
 
 #CMD ["run-jetty.sh"]
 CMD $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar \
