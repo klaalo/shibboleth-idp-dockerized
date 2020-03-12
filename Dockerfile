@@ -24,7 +24,7 @@ ENV JETTY_HOME=/opt/jetty-home \
     IDP_ENTITYID=https://testidp.example.fi/idp/shibboleth \
     IDP_KEYSTORE_PASSWORD=storepwd \
     IDP_SEALER_PASSWORD=hangeme \
-    PATH=$PATH:$JRE_HOME/bin
+    PATH=$PATH:$JAVA_HOME/bin
 
 LABEL maintainer="CSCfi"\
       idp.java.version="Alpine - openjdk11-jre-headless" \
@@ -104,7 +104,7 @@ RUN mkdir $JETTY_BASE/logs \
 
 FROM alpine:latest
 
-RUN apk --no-cache add wget tar openjdk11-jre-headless bash
+RUN apk --no-cache add openjdk11-jre-headless bash
 
 LABEL maintainer="CSCfi"\
     idp.java.version="Alpine - openjdk11-jre-headless" \
@@ -128,7 +128,7 @@ ENV JETTY_HOME=/opt/jetty-home \
     JETTY_KEYSTORE_PASSWORD=storepwd \
     JETTY_KEYSTORE_PATH=etc/keystore \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
-    PATH=$PATH:$JRE_HOME/bin
+    PATH=$PATH:$JAVA_HOME/bin
 
 #CMD ["run-jetty.sh"]
 CMD $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar \

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CSCfi/shibboleth-idp-dockerized.svg?branch=master)](https://travis-ci.org/CSCfi/shibboleth-idp-dockerized)
+
 ## Overview
 
 This Docker image contains a deployed Shibboleth IdP 4.0.0 running on OpenJDK11-headless and Jetty 9.4.27.v20200227 running on the latest Alpine base. This image is a base image and should be used to set the configuration with local changes.
