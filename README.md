@@ -170,15 +170,13 @@ Removing the `/opt/shib-jetty-base/etc/jetty-logging.xml` (or setting it to your
 $ docker build --tag="<org_id>/shibboleth-idp" github.com/unicon/shibboleth-idp-dockerized
 ```
 
-## Recipes
-
-Instructions for things like using the Oracle JVM and JCE with this image can be found at <https://github.com/Unicon/shibboleth-idp-dockerized/wiki/>.
-
 ## Authors/Contributors
 
-This project was developed as part of Unicon's [Open Source Support program](https://unicon.net/support), which is funded by our program subscribers. Professional support/integration assistance for this module is available. For more information, visit <https://unicon.net/opensource/shibboleth>.
+This project was originally developed as part of Unicon's [Open Source Support program](https://unicon.net/support), which was funded by Unicon's program subscribers.
 
 - John Gasper (<jgasper@unicon.net>)
+
+Unicon discontinued to maintain this image, I desided to fork this repository and modify it accordingly by our current needs and changes.
 
 ## LICENSE
 
