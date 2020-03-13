@@ -3,7 +3,7 @@
 export JAVA_HOME=/usr/lib/jvm/default-jvm \
 export PATH=$PATH:$JAVA_HOME/bin
 
-cd /opt/shibboleth-idp/bin
+cd $IDP_HOME/bin
 
 echo "Please complete the following for your IdP environment:"
 ./ant.sh -Didp.target.dir=/opt/shibboleth-idp-tmp -Didp.src.dir=/opt/shibboleth-idp/ install

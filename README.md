@@ -180,6 +180,8 @@ This project was originally developed as part of Unicon's [Open Source Support p
 
 Unicon discontinued to maintain this image, I desided to fork this repository and modify it accordingly by our current needs and changes.
 
+- Sami Silén (<sami.silen@csc.fi>)
+
 ## LICENSE
 
 The contents of the built image are subject to their respective licenses.
