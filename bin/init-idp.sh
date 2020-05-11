@@ -1,7 +1,8 @@
 #!/bin/bash
 
 export JAVA_HOME=/usr/lib/jvm/default-jvm \
-export PATH=$PATH:$JAVA_HOME/bin
+export PATH=$PATH:$JAVA_HOME/bin \
+export IDP_HOME=/opt/shibboleth-idp
 
 cd $IDP_HOME/bin
 
