@@ -15,15 +15,15 @@ ENV jetty_version=9.4.27.v20200227 \
 
 ENV JETTY_HOME=/opt/jetty-home \
     JETTY_BASE=/opt/jetty-base \
-    JETTY_KEYSTORE_PASSWORD=storepwd \
+    JETTY_KEYSTORE_PASSWORD=jkstorepwd \
     IDP_HOME=/opt/shibboleth-idp \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
     IDP_SRC=/opt/shibboleth-identity-provider-$idp_version \
-    IDP_SCOPE=example.fi \
-    IDP_HOST_NAME=testidp.example.fi \
-    IDP_ENTITYID=https://testidp.example.fi/idp/shibboleth \
-    IDP_KEYSTORE_PASSWORD=storepwd \
-    IDP_SEALER_PASSWORD=hangeme \
+    IDP_SCOPE=example.org \
+    IDP_HOST_NAME=idp.example.org \
+    IDP_ENTITYID=https://idp.example.org/idp/shibboleth \
+    IDP_KEYSTORE_PASSWORD=idpkstorepwd \
+    IDP_SEALER_PASSWORD=idpsealerpwd \
     PATH=$PATH:$JAVA_HOME/bin
 
 LABEL maintainer="CSCfi"\

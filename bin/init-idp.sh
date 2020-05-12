@@ -1,21 +1,21 @@
 #!/bin/bash
 
-export JAVA_HOME=/usr/lib/jvm/default-jvm \
-export PATH=$PATH:$JAVA_HOME/bin \
-export IDP_HOME=/opt/shibboleth-idp
+# export JAVA_HOME=/usr/lib/jvm/default-jvm \
+# export PATH=$PATH:$JAVA_HOME/bin \
+# export IDP_HOME=/opt/shibboleth-idp
 
-cd $IDP_HOME/bin
+# cd $IDP_HOME/bin
 
-echo "Please complete the following for your IdP environment:"
-./ant.sh -Didp.target.dir=/opt/shibboleth-idp-tmp -Didp.src.dir=/opt/shibboleth-idp/ install
+# echo "Please complete the following for your IdP environment:"
+# ./ant.sh -Didp.target.dir=/opt/shibboleth-idp-tmp -Didp.src.dir=/opt/shibboleth-idp/ install
 
-find /opt/shibboleth-idp-tmp/ -type d -exec chmod 750 {} \;
+# find /opt/shibboleth-idp-tmp/ -type d -exec chmod 750 {} \;
 
 mkdir -p /ext-mount/customized-shibboleth-idp/conf/
 chmod -R 750 /ext-mount/customized-shibboleth-idp/
 
 # Copy the essential and routinely customized config to out Docker mount.
-cd /opt/shibboleth-idp-tmp
+cd /opt/shibboleth-idp/dist
 cp -r credentials/ /ext-mount/customized-shibboleth-idp/
 cp -r metadata/ /ext-mount/customized-shibboleth-idp/
 cp conf/{attribute-resolver*.xml,attribute-filter.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,saml-nameid.*} /ext-mount/customized-shibboleth-idp/conf/
