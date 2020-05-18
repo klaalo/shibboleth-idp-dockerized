@@ -12,7 +12,7 @@
 # find /opt/shibboleth-idp-tmp/ -type d -exec chmod 750 {} \;
 
 mkdir -p /ext-mount/customized-shibboleth-idp/conf/
-chmod -R 750 /ext-mount/customized-shibboleth-idp/
+chmod -R 755 /ext-mount/customized-shibboleth-idp/
 
 # Copy the essential and routinely customized config to out Docker mount.
 cd /opt/shibboleth-idp
