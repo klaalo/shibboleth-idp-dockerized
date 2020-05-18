@@ -27,5 +27,7 @@ cp -r edit-webapp/css/ /ext-mount/customized-shibboleth-idp/webapp/
 cp -r edit-webapp/images/ /ext-mount/customized-shibboleth-idp/webapp/
 rm -r /ext-mount/customized-shibboleth-idp/views/user-prefs.js
 
+chmod -R 755 /ext-mount/customized-shibboleth-idp/
+
 echo "A basic Shibboleth IdP config and UI has been copied to ./customized-shibboleth-idp/ (assuming the default volume mapping was used)."
 echo "Most files, if not being customized can be removed from what was exported/the local Docker image and baseline files will be used."
