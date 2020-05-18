@@ -16,8 +16,6 @@ chmod -R 755 /ext-mount/customized-shibboleth-idp/
 
 # Copy the essential and routinely customized config to out Docker mount.
 cd /opt/shibboleth-idp
-ls -al
-ls .. -al
 cp -r credentials/ /ext-mount/customized-shibboleth-idp/
 cp -r metadata/ /ext-mount/customized-shibboleth-idp/
 cp conf/{attribute-resolver*.xml,attribute-filter.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,saml-nameid.*} /ext-mount/customized-shibboleth-idp/conf/
