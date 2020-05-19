@@ -1,7 +1,7 @@
 FROM alpine:latest as temp
 
-ENV jetty_version=9.4.27.v20200227 \
-    jetty_hash=b47b0990493196acdb82325e355019485f96ee12f9bf3d4f47a9ac748ab3d56a \
+ENV jetty_version=9.4.28.v20200408 \
+    jetty_hash=670c92bf11001bfcdfaa9c2065ed5a6051c0d730f298bc5de6b3a6853672f98a \
     idp_version=4.0.0 \
     idp_hash=a9c2fb351b2e49313f2f185bc98d944544a38f42b9722dc96bda7427a29ea2bb \
     slf4j_version=1.7.29 \
@@ -104,7 +104,7 @@ RUN mkdir $JETTY_BASE/logs \
 
 FROM alpine:latest
 
-RUN apk --no-cache add openjdk11-jre-headless bash
+RUN apk --no-cache add openjdk11-jre-headless bash curl
 
 LABEL maintainer="CSCfi"\
     idp.java.version="Alpine - openjdk11-jre-headless" \
@@ -130,7 +130,11 @@ ENV JETTY_HOME=/opt/jetty-home \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
     PATH=$PATH:$JAVA_HOME/bin
 
-#CMD ["run-jetty.sh"]
+
+#establish a healthcheck command so that docker might know the container's true state
+HEALTHCHECK --interval=1m --timeout=30s \
+    CMD curl -k -f https://127.0.0.1/idp/status || exit 1
+  
 CMD $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar \
     jetty.home=$JETTY_HOME jetty.base=$JETTY_BASE \
     -Djetty.sslContext.keyStorePassword=$JETTY_KEYSTORE_PASSWORD \
