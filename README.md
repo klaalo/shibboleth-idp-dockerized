@@ -169,7 +169,7 @@ Removing the `/opt/shib-jetty-base/etc/jetty-logging.xml` (or setting it to your
 ## Building from Source
 
 ```
-$ docker build --tag="<org_id>/shibboleth-idp" github.com/unicon/shibboleth-idp-dockerized
+$ docker build --tag="<org_id>/shibboleth-idp" github.com/cscfi/shibboleth-idp-dockerized
 ```
 
 ## Authors/Contributors
