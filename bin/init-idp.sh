@@ -27,6 +27,11 @@ cp -r edit-webapp/css/ /ext-mount/customized-shibboleth-idp/webapp/
 cp -r edit-webapp/images/ /ext-mount/customized-shibboleth-idp/webapp/
 rm -r /ext-mount/customized-shibboleth-idp/views/user-prefs.js
 
+# Copy Jetty configuration files
+mkdir -p /ext-mount/customized-shibboleth-idp/jetty-base/{etc,webapps}
+cp jetty-base/etc/tweak-ssl.xml /ext-mount/customized-shibboleth-idp/jetty-base/etc/tweak-ssl.xml
+cp jetty-base/webapps/idp.xml /ext-mount/customized-shibboleth-idp/jetty-base/webapps/idp.xml
+
 chmod -R 755 /ext-mount/customized-shibboleth-idp/
 
 echo "A basic Shibboleth IdP config and UI has been copied to ./customized-shibboleth-idp/ (assuming the default volume mapping was used)."

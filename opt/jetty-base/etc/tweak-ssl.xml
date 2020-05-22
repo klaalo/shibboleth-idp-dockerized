@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
- 
 <Configure id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory">
- 
+
   <!-- Prohibit old and untrustworthy ciphers -->
   <Call name="addExcludeCipherSuites">
     <Arg>
@@ -20,7 +19,7 @@
       </Array>
     </Arg>
   </Call>
- 
+
   <!-- Prohibit untrustworthy protocols -->
   <Call name="addExcludeProtocols">
     <Arg>
@@ -34,7 +33,7 @@
      </Array>
     </Arg>
   </Call>
- 
+
   <!-- Enabling Forward Secrecy -->
   <Set name="IncludeCipherSuites">
     <Array type="String">
@@ -42,5 +41,5 @@
       <Item>TLS_ECDHE.*</Item>
     </Array>
   </Set>
- 
+
 </Configure>
