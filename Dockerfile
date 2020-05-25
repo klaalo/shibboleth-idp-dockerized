@@ -126,7 +126,7 @@ RUN chmod +x /opt/jetty-home/bin/jetty.sh
 # Opening 443
 EXPOSE 443
 ENV JETTY_HOME=/opt/jetty-home \
-    JETTY_BASE=/opt/jetty-base \
+    JETTY_BASE=/opt/shibboleth-idp/jetty-base \
     JETTY_KEYSTORE_PASSWORD=storepwd \
     JETTY_KEYSTORE_PATH=etc/keystore \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
