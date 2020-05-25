@@ -87,7 +87,6 @@ RUN wget -q https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/
     && echo "$mariadb_hash  mariadb-java-client-$mariadb_version.jar" | sha256sum -c - \
     && mv mariadb-java-client-$mariadb_version.jar $IDP_HOME/edit-webapp/WEB-INF/lib/
 
-COPY opt/jetty-base/ /opt/jetty-base/
 COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 
 # Create new user to run jetty with
