@@ -94,6 +94,8 @@ COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 RUN addgroup -g 1000 -S jetty && \
     adduser -u 1000 -S jetty -G jetty -s /bin/false
 
+COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
+
 # Set ownerships
 RUN mkdir $JETTY_BASE/logs \
     && chown -R root:jetty $JETTY_BASE \
