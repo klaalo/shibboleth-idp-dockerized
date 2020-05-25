@@ -14,7 +14,7 @@ ENV jetty_version=9.4.28.v20200408 \
     mariadb_hash=5fafee1aad82be39143b4bfb8915d6c2d73d860938e667db8371183ff3c8500a
 
 ENV JETTY_HOME=/opt/jetty-home \
-    JETTY_BASE=/opt/jetty-base \
+    JETTY_BASE=/opt/shibboleth-idp/jetty-base \
     JETTY_KEYSTORE_PASSWORD=jkstorepwd \
     IDP_HOME=/opt/shibboleth-idp \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
