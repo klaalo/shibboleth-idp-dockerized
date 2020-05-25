@@ -102,7 +102,8 @@ RUN mkdir $JETTY_BASE/logs \
     && chmod -R 550 $JETTY_BASE \
     && chmod -R 550 /opt/shibboleth-idp/bin \
     && chown -R root:jetty /opt \
-    && chmod -R 550 /opt
+    && chmod -R 550 /opt \
+    && chmod -R 665 /opt/shibboleth-idp/metadata
 
 FROM alpine:latest
 
