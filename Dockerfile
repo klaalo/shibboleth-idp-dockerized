@@ -60,7 +60,8 @@ RUN wget -q https://shibboleth.net/downloads/identity-provider/$idp_version/shib
     -Didp.sealer.password=$IDP_SEALER_PASSWORD \
     -Didp.keystore.password=$IDP_KEYSTORE_PASSWORD \
     -Didp.entityID=$IDP_ENTITYID \
-    && rm shibboleth-identity-provider-$idp_version.tar.gz
+    && rm shibboleth-identity-provider-$idp_version.tar.gz \
+    && rm -rf shibboleth-identity-provider-$idp_version
 
 # slf4j - Download, verify and install
 RUN wget -q https://repo1.maven.org/maven2/org/slf4j/slf4j-api/$slf4j_version/slf4j-api-$slf4j_version.jar \
@@ -92,8 +93,6 @@ COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 # Create new user to run jetty with
 RUN addgroup -g 1000 -S jetty && \
     adduser -u 1000 -S jetty -G jetty -s /bin/false
-
-COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 
 # Set ownerships
 RUN mkdir $JETTY_BASE/logs \
@@ -132,7 +131,6 @@ ENV JETTY_HOME=/opt/jetty-home \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
     PATH=$PATH:$JAVA_HOME/bin
 
-
 #establish a healthcheck command so that docker might know the container's true state
 HEALTHCHECK --interval=1m --timeout=30s \
     CMD curl -k -f https://127.0.0.1/idp/status || exit 1
@@ -141,4 +139,3 @@ CMD $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar \
     jetty.home=$JETTY_HOME jetty.base=$JETTY_BASE \
     -Djetty.sslContext.keyStorePassword=$JETTY_KEYSTORE_PASSWORD \
     -Djetty.sslContext.keyStorePath=$JETTY_KEYSTORE_PATH
-
