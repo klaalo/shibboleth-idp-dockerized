@@ -60,7 +60,9 @@ RUN wget -q https://shibboleth.net/downloads/identity-provider/$idp_version/shib
     -Didp.sealer.password=$IDP_SEALER_PASSWORD \
     -Didp.keystore.password=$IDP_KEYSTORE_PASSWORD \
     -Didp.entityID=$IDP_ENTITYID \
-    && rm shibboleth-identity-provider-$idp_version.tar.gz
+    && rm shibboleth-identity-provider-$idp_version.tar.gz \
+    && rm -rf shibboleth-identity-provider-$idp_version
+    
 
 # slf4j - Download, verify and install
 RUN wget -q https://repo1.maven.org/maven2/org/slf4j/slf4j-api/$slf4j_version/slf4j-api-$slf4j_version.jar \
