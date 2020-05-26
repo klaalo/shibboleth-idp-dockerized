@@ -20,7 +20,7 @@ cp -r credentials/ /ext-mount/customized-shibboleth-idp/
 cp -r metadata/ /ext-mount/customized-shibboleth-idp/
 cp conf/{attribute-resolver*.xml,attribute-filter.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,saml-nameid.*} /ext-mount/customized-shibboleth-idp/conf/
 cp conf/authn/{general-authn.xml,saml-authn-config.xml} /ext-mount/customized-shibboleth-idp/conf/authn/
-cp conf/c14n/{attribute-sourced-subject-c14n-config.xml,subject-c14n.xml} /ext-mount/customized-shibboleth-idp/conf/c14/
+cp conf/c14n/{attribute-sourced-subject-c14n-config.xml,subject-c14n.xml} /ext-mount/customized-shibboleth-idp/conf/c14n/
 
 # Copy the basic UI components, which are routinely customized
 cp -r views/ /ext-mount/customized-shibboleth-idp/
