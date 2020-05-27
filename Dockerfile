@@ -33,7 +33,7 @@ LABEL maintainer="CSCfi"\
       idp.jetty.version=$jetty_version \
       idp.version=$idp_version
 
-RUN apk --no-cache add wget tar openjdk11-jre-headless bash
+RUN apk --no-cache add wget tar openjdk11-jre-headless bash gawk
 
 # JETTY - Download, verify and install with base
 RUN wget -q https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/$jetty_version/jetty-distribution-$jetty_version.tar.gz \
@@ -98,6 +98,8 @@ RUN wget -q https://shibboleth.net/downloads/identity-provider/extensions/java-i
     && grep -q 'global-oidc.xml' $IDP_HOME/conf/global.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"global-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/global.xml \
     && grep -q 'credentials-oidc.xml' $IDP_HOME/conf/credentials.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"credentials-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/credentials.xml \
     && grep -q 'services-oidc.xml' $IDP_HOME/conf/services.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"services-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/services.xml \
+    && grep -q 'oidc-subject.properties' $IDP_HOME/conf/idp.properties || sed '/^idp.additionalProperties=/ s/$/\, \/conf\/oidc-subject.properties\, \/conf\/idp-oidc.properties/' $IDP_HOME/conf/idp.properties \
+    && cp $IDP_HOME/conf/authn/authn-comparison-oidc.xml $IDP_HOME/conf/authn/authn-comparison.xml
     && $IDP_SRC/bin/build.sh
 
 COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
