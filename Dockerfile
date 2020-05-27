@@ -103,7 +103,7 @@ RUN wget -q https://shibboleth.net/downloads/identity-provider/extensions/java-i
 #    && $IDP_SRC/bin/build.sh
 
 COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
-
+i
 # Create new user to run jetty with
 RUN addgroup -g 1000 -S jetty && \
     adduser -u 1000 -S jetty -G jetty -s /bin/false
