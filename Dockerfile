@@ -4,6 +4,8 @@ ENV jetty_version=9.4.28.v20200408 \
     jetty_hash=670c92bf11001bfcdfaa9c2065ed5a6051c0d730f298bc5de6b3a6853672f98a \
     idp_version=4.0.0 \
     idp_hash=a9c2fb351b2e49313f2f185bc98d944544a38f42b9722dc96bda7427a29ea2bb \
+    idp_oidcext_version=2.0.0 \
+    idp_oidcext_hash=304eb4e58eadc3377fae02209f8eef6549fd17ac5fd9356ad1216869b75bb23a \
     slf4j_version=1.7.29 \
     slf4j_hash=47b624903c712f9118330ad2fb91d0780f7f666c3f22919d0fc14522c5cad9ea \
     logback_version=1.2.3 \
@@ -87,6 +89,12 @@ RUN wget -q https://repo1.maven.org/maven2/ch/qos/logback/logback-access/$logbac
 RUN wget -q https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/$mariadb_version/mariadb-java-client-$mariadb_version.jar \
     && echo "$mariadb_hash  mariadb-java-client-$mariadb_version.jar" | sha256sum -c - \
     && mv mariadb-java-client-$mariadb_version.jar $IDP_HOME/edit-webapp/WEB-INF/lib/
+
+RUN wget -q https://shibboleth.net/downloads/identity-provider/extensions/java-idp-oidc/$idp_oidcext_version/idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz 
+    && echo "$idp_oidcext_hash  idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz" | sha256sum -c - \
+    && tar -zxvf idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz -C /opt/shibboleth-idp --strip-components=1 \
+    && rm idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz \
+    && $IDP_SRC/bin/build.sh
 
 COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 
