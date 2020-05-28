@@ -90,17 +90,21 @@ RUN wget -q https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/
     && echo "$mariadb_hash  mariadb-java-client-$mariadb_version.jar" | sha256sum -c - \
     && mv mariadb-java-client-$mariadb_version.jar $IDP_HOME/edit-webapp/WEB-INF/lib/
 
+# idp-oidc-extension - Donwload, verify and install
 RUN wget -q https://shibboleth.net/downloads/identity-provider/extensions/java-idp-oidc/$idp_oidcext_version/idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz \
     && echo "$idp_oidcext_hash  idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz" | sha256sum -c - \
     && tar -zxvf idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz -C /opt/shibboleth-idp --strip-components=1 \
     && rm idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz \
-    && grep -q 'oidc-relying-party.xml' $IDP_HOME/conf/relying-party.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"oidc-relying-party.xml\" />\n"; n++}' $IDP_HOME/conf/relying-party.xml \
+    && $IDP_HOME/bin/build.sh -Didp.target.dir=$IDP_HOME
+
+# idp-oidc-extension - Configuration 
+RUN grep -q 'oidc-relying-party.xml' $IDP_HOME/conf/relying-party.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"oidc-relying-party.xml\" />\n"; n++}' $IDP_HOME/conf/relying-party.xml \
     && grep -q 'global-oidc.xml' $IDP_HOME/conf/global.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"global-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/global.xml \
     && grep -q 'credentials-oidc.xml' $IDP_HOME/conf/credentials.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"credentials-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/credentials.xml \
     && grep -q 'services-oidc.xml' $IDP_HOME/conf/services.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"services-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/services.xml \
     && grep -q 'oidc-subject.properties' $IDP_HOME/conf/idp.properties || sed -i '/^idp.additionalProperties=/ s/$/\, \/conf\/oidc-subject.properties\, \/conf\/idp-oidc.properties/' $IDP_HOME/conf/idp.properties \
-    && cp $IDP_HOME/conf/authn/authn-comparison-oidc.xml $IDP_HOME/conf/authn/authn-comparison.xml \
-    && $IDP_HOME/bin/build.sh -Didp.target.dir=$IDP_HOME
+    && gawk -i inplace '/^#?idp.oidc.issuer/ {$0="idp.oidc.issuer = $IDP_HOST_NAME"} 1' $IDP_HOME/conf/idp-oidc.properties \ 
+    && cp $IDP_HOME/conf/authn/authn-comparison-oidc.xml $IDP_HOME/conf/authn/authn-comparison.xml
 
 COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 
