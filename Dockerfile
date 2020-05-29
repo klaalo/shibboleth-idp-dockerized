@@ -116,12 +116,9 @@ RUN addgroup -g 1000 -S jetty && \
 
 # Set ownerships
 RUN mkdir $JETTY_BASE/logs \
-    && chown -R root:jetty $JETTY_BASE \
-    && chmod -R 550 $JETTY_BASE \
-    && chmod -R 550 /opt/shibboleth-idp/bin \
-    && chown -R root:jetty /opt \
-    && chmod -R 550 /opt \
-    && chmod -R 775 /opt/shibboleth-idp/metadata
+    && chown -R root:jetty $IDP_HOME \
+    && chmod -R 550 $IDP_HOME \
+    && chmod -R 775 $IDP_HOME/metadata
 
 FROM alpine:latest
 
@@ -136,7 +133,8 @@ COPY bin/ /usr/local/bin/
 
 RUN addgroup -g 1000 -S jetty \
     && adduser -u 1000 -S jetty -G jetty -s /bin/false \
-    && chmod 750 /usr/local/bin/run-jetty.sh /usr/local/bin/init-idp.sh
+    && chmod 750 /usr/local/bin/run-jetty.sh /usr/local/bin/init-idp.sh \
+    && chmod 775 /opt/shibboleth-idp/metadata
 
 COPY --from=temp /opt/ /opt/
 
