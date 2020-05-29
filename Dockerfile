@@ -133,8 +133,7 @@ COPY bin/ /usr/local/bin/
 
 RUN addgroup -g 1000 -S jetty \
     && adduser -u 1000 -S jetty -G jetty -s /bin/false \
-    && chmod 750 /usr/local/bin/run-jetty.sh /usr/local/bin/init-idp.sh \
-    && chmod 775 /opt/shibboleth-idp/metadata
+    && chmod 750 /usr/local/bin/run-jetty.sh /usr/local/bin/init-idp.sh
 
 COPY --from=temp /opt/ /opt/
 
