@@ -30,9 +30,10 @@ cp -r edit-webapp/images/ /ext-mount/customized-shibboleth-idp/webapp/
 rm -r /ext-mount/customized-shibboleth-idp/views/user-prefs.js
 
 # Copy Jetty configuration files
-mkdir -p /ext-mount/customized-shibboleth-idp/jetty-base/{etc,webapps}
+mkdir -p /ext-mount/customized-shibboleth-idp/jetty-base/{etc,webapps,start.d}
 cp jetty-base/etc/tweak-ssl.xml /ext-mount/customized-shibboleth-idp/jetty-base/etc/tweak-ssl.xml
 cp jetty-base/webapps/idp.xml /ext-mount/customized-shibboleth-idp/jetty-base/webapps/idp.xml
+cp jetty-base/start.d/ssl.ini /ext-mount/customized-shibboleth-idp/jetty-base/start.d/ssl.ini
 
 chmod -R 755 /ext-mount/customized-shibboleth-idp/
 
