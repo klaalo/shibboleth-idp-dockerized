@@ -34,6 +34,7 @@ mkdir -p /ext-mount/customized-shibboleth-idp/jetty-base/{etc,webapps,start.d}
 cp jetty-base/etc/tweak-ssl.xml /ext-mount/customized-shibboleth-idp/jetty-base/etc/tweak-ssl.xml
 cp jetty-base/webapps/idp.xml /ext-mount/customized-shibboleth-idp/jetty-base/webapps/idp.xml
 cp jetty-base/start.d/ssl.ini /ext-mount/customized-shibboleth-idp/jetty-base/start.d/ssl.ini
+cp jetty-base/start.d/ssl.ini /ext-mount/customized-shibboleth-idp/jetty-base/start.d/https.ini
 
 chmod -R 755 /ext-mount/customized-shibboleth-idp/
 
