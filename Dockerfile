@@ -135,7 +135,7 @@ COPY bin/ /usr/local/bin/
 #    && adduser -u 1000 -S jetty -G jetty -s /bin/false \
 #    && chmod 750 /usr/local/bin/run-jetty.sh /usr/local/bin/init-idp.sh
 
-RUN adduser -u 1000 -S jetty -G 0 -s /bin/false \
+RUN adduser -u 1000 -S jetty -G root -s /bin/false \
     && chmod 750 /usr/local/bin/run-jetty.sh /usr/local/bin/init-idp.sh
 
 COPY --from=temp /opt/ /opt/
