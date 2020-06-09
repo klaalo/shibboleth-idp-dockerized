@@ -104,7 +104,7 @@ RUN grep -q 'oidc-relying-party.xml' $IDP_HOME/conf/relying-party.xml || gawk -i
     && grep -q 'services-oidc.xml' $IDP_HOME/conf/services.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"services-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/services.xml \
     && grep -q 'oidc-subject.properties' $IDP_HOME/conf/idp.properties || sed -i '/^idp.additionalProperties=/ s/$/\, \/conf\/oidc-subject.properties\, \/conf\/idp-oidc.properties/' $IDP_HOME/conf/idp.properties \
     && gawk -i inplace '/^#?idp.oidc.issuer/ {$0="idp.oidc.issuer = $IDP_HOST_NAME"} 1' $IDP_HOME/conf/idp-oidc.properties \
-    && INI=jetty.setuid.groupName;VALUE=root; sed 's/.*'$INI'=.*/'$INI'='$VALUE'/' $JETTY_BASE/start.d/setuid.ini \
+    && INI=jetty.setuid.groupName;VALUE=root; sed -i 's/.*'$INI'=.*/'$INI'='$VALUE'/' $JETTY_BASE/start.d/setuid.ini \
 		&& cp $IDP_HOME/conf/attribute-filter-oidc.xml $IDP_HOME/conf/attribute-filter.xml \
     && cp $IDP_HOME/conf/attribute-resolver-oidc.xml $IDP_HOME/conf/attribute-resolver.xml \
     && cp $IDP_HOME/conf/authn/authn-comparison-oidc.xml $IDP_HOME/conf/authn/authn-comparison.xml
@@ -143,8 +143,8 @@ COPY --from=temp /opt/ /opt/
 
 RUN chmod +x /opt/jetty-home/bin/jetty.sh
 
-# Opening 443
-EXPOSE 443
+# Opening 8080
+EXPOSE 8080
 ENV JETTY_HOME=/opt/jetty-home \
     JETTY_BASE=/opt/shibboleth-idp/jetty-base \
     JETTY_KEYSTORE_PASSWORD=storepwd \
