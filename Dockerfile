@@ -2,8 +2,8 @@ FROM alpine:latest as temp
 
 ENV jetty_version=9.4.28.v20200408 \
     jetty_hash=670c92bf11001bfcdfaa9c2065ed5a6051c0d730f298bc5de6b3a6853672f98a \
-    idp_version=4.0.0 \
-    idp_hash=a9c2fb351b2e49313f2f185bc98d944544a38f42b9722dc96bda7427a29ea2bb \
+    idp_version=4.0.1 \
+    idp_hash=832f73568c5b74a616332258fd9dc555bb20d7dd9056c18dc0ccf52e9292102a \
     idp_oidcext_version=2.0.0 \
     idp_oidcext_hash=304eb4e58eadc3377fae02209f8eef6549fd17ac5fd9356ad1216869b75bb23a \
     slf4j_version=1.7.29 \
@@ -152,11 +152,9 @@ ENV JETTY_HOME=/opt/jetty-home \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
     PATH=$PATH:$JAVA_HOME/bin
 
-RUN cat $JETTY_BASE/start.d/setuid.ini 
-
 #establish a healthcheck command so that docker might know the container's true state
 HEALTHCHECK --interval=1m --timeout=30s \
-    CMD curl -k -f https://127.0.0.1/idp/status || exit 1
+    CMD curl -k -f http://127.0.0.1:8080/idp/status || exit 1
   
 CMD $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar \
     jetty.home=$JETTY_HOME jetty.base=$JETTY_BASE \
