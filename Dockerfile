@@ -103,8 +103,9 @@ RUN grep -q 'oidc-relying-party.xml' $IDP_HOME/conf/relying-party.xml || gawk -i
     && grep -q 'credentials-oidc.xml' $IDP_HOME/conf/credentials.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"credentials-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/credentials.xml \
     && grep -q 'services-oidc.xml' $IDP_HOME/conf/services.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"services-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/services.xml \
     && grep -q 'oidc-subject.properties' $IDP_HOME/conf/idp.properties || sed -i '/^idp.additionalProperties=/ s/$/\, \/conf\/oidc-subject.properties\, \/conf\/idp-oidc.properties/' $IDP_HOME/conf/idp.properties \
-#    && gawk -i inplace '/^#?idp.oidc.issuer/ {$0="idp.oidc.issuer = $IDP_HOST_NAME"} 1' $IDP_HOME/conf/idp-oidc.properties \ 
-    && cp $IDP_HOME/conf/attribute-filter-oidc.xml $IDP_HOME/conf/attribute-filter.xml \
+    && gawk -i inplace '/^#?idp.oidc.issuer/ {$0="idp.oidc.issuer = $IDP_HOST_NAME"} 1' $IDP_HOME/conf/idp-oidc.properties \
+    && gawk -i inplace '/^#?jetty.setuid.groupName/ {$0="jetty.setuid.groupName=root"} 1' $JETTY_BASE/start.d/setuid.ini \
+		&& cp $IDP_HOME/conf/attribute-filter-oidc.xml $IDP_HOME/conf/attribute-filter.xml \
     && cp $IDP_HOME/conf/attribute-resolver-oidc.xml $IDP_HOME/conf/attribute-resolver.xml \
     && cp $IDP_HOME/conf/authn/authn-comparison-oidc.xml $IDP_HOME/conf/authn/authn-comparison.xml
 
@@ -150,6 +151,8 @@ ENV JETTY_HOME=/opt/jetty-home \
     JETTY_KEYSTORE_PATH=etc/keystore \
     JAVA_HOME=/usr/lib/jvm/default-jvm \
     PATH=$PATH:$JAVA_HOME/bin
+
+RUN cat $JETTY_BASE/start.d/setuid.ini 
 
 #establish a healthcheck command so that docker might know the container's true state
 HEALTHCHECK --interval=1m --timeout=30s \
