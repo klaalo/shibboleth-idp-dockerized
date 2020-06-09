@@ -1,7 +1,7 @@
 FROM alpine:latest as temp
 
-ENV jetty_version=9.4.28.v20200408 \
-    jetty_hash=670c92bf11001bfcdfaa9c2065ed5a6051c0d730f298bc5de6b3a6853672f98a \
+ENV jetty_version=9.4.29.v20200521 \
+    jetty_hash=71b572d99fe2c1342231ac3bd2e14327f523e532dd01ff203f331d52f2cf2747 \
     idp_version=4.0.1 \
     idp_hash=832f73568c5b74a616332258fd9dc555bb20d7dd9056c18dc0ccf52e9292102a \
     idp_oidcext_version=2.0.0 \
