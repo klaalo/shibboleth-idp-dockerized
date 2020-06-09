@@ -46,7 +46,7 @@ RUN wget -q https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/
 RUN mkdir -p $JETTY_BASE/modules $JETTY_BASE/lib/ext $JETTY_BASE/lib/logging $JETTY_BASE/resources \
     && cd $JETTY_BASE \
     && touch start.ini \
-    && $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar --create-startd --add-to-start=http,https,deploy,ext,annotations,jstl,rewrite,ssl,setuid
+    && $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar --create-startd --add-to-start=http2,http2c,deploy,ext,annotations,jstl,rewrite,setuid
 
 # Shibboleth IdP - Download, verify hash and install
 RUN wget -q https://shibboleth.net/downloads/identity-provider/$idp_version/shibboleth-identity-provider-$idp_version.tar.gz \
@@ -144,7 +144,7 @@ COPY --from=temp /opt/ /opt/
 RUN chmod +x /opt/jetty-home/bin/jetty.sh
 
 # Opening 8080
-EXPOSE 8080 443
+EXPOSE 8080 8443
 ENV JETTY_HOME=/opt/jetty-home \
     JETTY_BASE=/opt/shibboleth-idp/jetty-base \
     JETTY_KEYSTORE_PASSWORD=storepwd \
