@@ -111,8 +111,8 @@ RUN grep -q 'oidc-relying-party.xml' $IDP_HOME/conf/relying-party.xml || gawk -i
 COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 
 # Create new user to run jetty with
-RUN addgroup -g 1000 -S jetty && \
-    adduser -u 1000 -S jetty -G jetty -s /bin/false
+# RUN addgroup -g 1000 -S jetty && \
+RUN adduser -u 1000 -S jetty -G root -s /bin/false
 
 # Set ownerships
 RUN mkdir $JETTY_BASE/logs \
