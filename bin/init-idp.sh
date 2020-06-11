@@ -27,6 +27,7 @@ cp -r views/ /ext-mount/customized-shibboleth-idp/
 mkdir /ext-mount/customized-shibboleth-idp/webapp/
 cp -r edit-webapp/css/ /ext-mount/customized-shibboleth-idp/webapp/
 cp -r edit-webapp/images/ /ext-mount/customized-shibboleth-idp/webapp/
+cp -r messages/messages.properties /ext-mount/customized-shibboleth-idp/messages/messages.properties
 rm -r /ext-mount/customized-shibboleth-idp/views/user-prefs.js
 
 # Copy Jetty configuration files
