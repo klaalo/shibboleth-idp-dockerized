@@ -77,6 +77,9 @@
                     <prop key="transcoder">SAML2StringTranscoder</prop>
                     <prop key="saml2.name">urn:oid:1.3.6.1.4.1.25178.1.2.9</prop>
                     <prop key="displayName.en">Home Organization</prop>
+                    <prop key="displayName.fi">Kotiorganisaatio</prop>
+                    <prop key="displayDescription.en">The domain name of the person's home organisation</prop>
+                    <prop key="displayDescription.fi">Henkilön kotiorganisaation domain-nimi</prop>
                 </props>
             </property>
         </bean>
@@ -87,7 +90,10 @@
                     <prop key="id">schacHomeOrganizationType</prop>
                     <prop key="transcoder">SAML2StringTranscoder</prop>
                     <prop key="saml2.name">urn:oid:1.3.6.1.4.1.25178.1.2.10</prop>
-                    <prop key="displayName.en">Home Organization Type</prop>
+                    <prop key="displayName.en">Home organization type</prop>
+                    <prop key="displayName.fi">Kotiorganisaation tyyppi</prop>
+                    <prop key="displayDescription.en">Home organisation type: university, polytechnic, etc</prop>
+                    <prop key="displayDescription.fi">Kotiorganisaation tyyppi: yliopisto, ammattikorkeakoulu jne</prop>
                 </props>
             </property>
         </bean>
@@ -128,10 +134,21 @@
         <bean parent="shibboleth.TranscodingProperties">
             <property name="properties">
                 <props merge="true">
-                    <prop key="id">schacPersonalUniqueID</prop>
+                    <prop key="id">schacPersonalUniqueCode</prop>
                     <prop key="transcoder">SAML2StringTranscoder</prop>
                     <prop key="saml2.name">urn:oid:1.3.6.1.4.1.25178.1.2.14</prop>
                     <prop key="displayName.en">Personal Unique Code</prop>
+                </props>
+            </property>
+        </bean>
+
+	<bean parent="shibboleth.TranscodingProperties">
+            <property name="properties">
+                <props merge="true">
+                    <prop key="id">schacPersonalUniqueID</prop>
+                    <prop key="transcoder">SAML2StringTranscoder</prop>
+                    <prop key="saml2.name">urn:oid:1.3.6.1.4.1.25178.1.2.15</prop>
+                    <prop key="displayName.en">Personal Unique ID</prop>
                 </props>
             </property>
         </bean>
