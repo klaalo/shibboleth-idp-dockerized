@@ -18,7 +18,7 @@ chmod -R 755 /ext-mount/customized-shibboleth-idp/
 cd /opt/shibboleth-idp
 cp -r credentials/ /ext-mount/customized-shibboleth-idp/
 cp -r metadata/ /ext-mount/customized-shibboleth-idp/
-cp conf/{attribute-resolver*.xml,attribute-filter*.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,global.xml,services.xml,credentials.xml,saml-nameid.*} /ext-mount/customized-shibboleth-idp/conf/
+cp conf/{attribute-resolver*.xml,attribute-filter*.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,*relying-party.xml,global.xml,services.xml,credentials.xml,saml-nameid.*} /ext-mount/customized-shibboleth-idp/conf/
 cp conf/authn/{general-authn.xml,saml-authn-config.xml} /ext-mount/customized-shibboleth-idp/conf/authn/
 cp conf/c14n/{attribute-sourced-subject-c14n-config.xml,subject-c14n.xml} /ext-mount/customized-shibboleth-idp/conf/c14n/
 
