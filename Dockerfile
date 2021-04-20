@@ -2,8 +2,8 @@ FROM alpine:latest as temp
 
 ENV jetty_version=9.4.29.v20200521 \
     jetty_hash=71b572d99fe2c1342231ac3bd2e14327f523e532dd01ff203f331d52f2cf2747 \
-    idp_version=4.0.1 \
-    idp_hash=832f73568c5b74a616332258fd9dc555bb20d7dd9056c18dc0ccf52e9292102a \
+    idp_version=4.1.0 \
+    idp_hash=46fe154859f9f1557acd1ae26ee9ac82ded938af52a7dec0b18adbf5bb4510e9 \
     idp_oidcext_version=2.0.0 \
     idp_oidcext_hash=304eb4e58eadc3377fae02209f8eef6549fd17ac5fd9356ad1216869b75bb23a \
     slf4j_version=1.7.29 \
@@ -33,7 +33,7 @@ LABEL maintainer="CSCfi"\
       idp.jetty.version=$jetty_version \
       idp.version=$idp_version
 
-RUN apk --no-cache add wget tar openjdk11-jre-headless bash gawk
+RUN apk --no-cache add wget tar openjdk11-jre-headless bash gawk gnupg curl
 
 # JETTY - Download, verify and install with base
 RUN wget -q https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/$jetty_version/jetty-distribution-$jetty_version.tar.gz \
@@ -90,26 +90,15 @@ RUN wget -q https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/
     && echo "$mariadb_hash  mariadb-java-client-$mariadb_version.jar" | sha256sum -c - \
     && mv mariadb-java-client-$mariadb_version.jar $IDP_HOME/edit-webapp/WEB-INF/lib/
 
-# idp-oidc-extension - Donwload, verify and install
-RUN wget -q https://shibboleth.net/downloads/identity-provider/extensions/java-idp-oidc/$idp_oidcext_version/idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz \
-    && echo "$idp_oidcext_hash  idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz" | sha256sum -c - \
-    && tar -zxvf idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz -C /opt/shibboleth-idp --strip-components=1 \
-    && rm idp-oidc-extension-distribution-$idp_oidcext_version-bin.tar.gz \
-    && $IDP_HOME/bin/build.sh -Didp.target.dir=$IDP_HOME
+# Run Jetty with suid
+RUN INI=jetty.setuid.groupName;VALUE=root; sed -i 's/.*'$INI'=.*/'$INI'='$VALUE'/' $JETTY_BASE/start.d/setuid.ini
 
-# idp-oidc-extension - Configuration 
-RUN grep -q 'oidc-relying-party.xml' $IDP_HOME/conf/relying-party.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"oidc-relying-party.xml\" />\n"; n++}' $IDP_HOME/conf/relying-party.xml \
-    && grep -q 'global-oidc.xml' $IDP_HOME/conf/global.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"global-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/global.xml \
-    && grep -q 'credentials-oidc.xml' $IDP_HOME/conf/credentials.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"credentials-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/credentials.xml \
-    && grep -q 'services-oidc.xml' $IDP_HOME/conf/services.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"services-oidc.xml\" />\n"; n++}' $IDP_HOME/conf/services.xml \
-		&& grep -q 'schac.xml' $IDP_HOME/conf/attributes/default-rules.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"schac.xml\" />\n"; n++}' $IDP_HOME/conf/attributes/default-rules.xml \
-		&& grep -q 'funetEduPerson.xml' $IDP_HOME/conf/attributes/default-rules.xml || gawk -i inplace '{print} /-->/ && !n {print "    <import resource=\"funetEduPerson.xml\" />\n"; n++}' $IDP_HOME/conf/attributes/default-rules.xml \
-    && grep -q 'oidc-subject.properties' $IDP_HOME/conf/idp.properties || sed -i '/^idp.additionalProperties=/ s/$/\, \/conf\/oidc-subject.properties\, \/conf\/idp-oidc.properties/' $IDP_HOME/conf/idp.properties \
-    && gawk -i inplace '/^#?idp.oidc.issuer/ {$0="idp.oidc.issuer = $IDP_HOST_NAME"} 1' $IDP_HOME/conf/idp-oidc.properties \
-    && INI=jetty.setuid.groupName;VALUE=root; sed -i 's/.*'$INI'=.*/'$INI'='$VALUE'/' $JETTY_BASE/start.d/setuid.ini \
-    && cp $IDP_HOME/conf/attribute-filter-oidc.xml $IDP_HOME/conf/attribute-filter.xml \
-    && cp $IDP_HOME/conf/attribute-resolver-oidc.xml $IDP_HOME/conf/attribute-resolver.xml \
-    && cp $IDP_HOME/conf/authn/authn-comparison-oidc.xml $IDP_HOME/conf/authn/authn-comparison.xml
+# Install plugins
+# See: https://stackoverflow.com/questions/34212230/using-bouncycastle-with-gnupg-2-1s-pubring-kbx-file
+RUN curl -s https://shibboleth.net/downloads/PGP_KEYS | gpg --import && \ 
+    gpg --export > /root/.gnupg/pubring.gpg && \
+    ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-common/1.0.0/oidc-common-dist-1.0.0.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt && \
+    ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-op/3.0.0/idp-plugin-oidc-op-distribution-3.0.0.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt
 
 COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
 
