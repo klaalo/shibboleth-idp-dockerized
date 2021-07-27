@@ -32,10 +32,10 @@ LABEL idp.java.version="Alpine - openjdk11-jre-headless" \
       idp.jetty.version=$jetty_version \
       idp.version=$idp_version
 
-RUN apk --no-cache add wget tar openjdk11-jre-headless bash gawk gnupg curl
+RUN apk --no-cache add tar openjdk11-jre-headless bash gawk gnupg curl
 
 # JETTY - Download, verify and install with base
-RUN wget -q https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/$jetty_version/jetty-distribution-$jetty_version.tar.gz \
+RUN curl -sO https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/$jetty_version/jetty-distribution-$jetty_version.tar.gz \
     && echo "$jetty_hash  jetty-distribution-$jetty_version.tar.gz" | sha256sum -c - \
     && tar -zxvf jetty-distribution-$jetty_version.tar.gz -C /opt \
     && ln -s /opt/jetty-distribution-$jetty_version/ /opt/jetty-home \
@@ -48,7 +48,7 @@ RUN mkdir -p $JETTY_BASE/modules $JETTY_BASE/lib/ext $JETTY_BASE/lib/logging $JE
     && $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar --create-startd --add-to-start=http2,http2c,deploy,ext,annotations,jstl,rewrite,setuid
 
 # Shibboleth IdP - Download, verify hash and install
-RUN wget -q https://shibboleth.net/downloads/identity-provider/$idp_version/shibboleth-identity-provider-$idp_version.tar.gz \
+RUN curl -sO https://shibboleth.net/downloads/identity-provider/$idp_version/shibboleth-identity-provider-$idp_version.tar.gz \
     && echo "$idp_hash  shibboleth-identity-provider-$idp_version.tar.gz" | sha256sum -c - \
     && tar -zxvf  shibboleth-identity-provider-$idp_version.tar.gz -C /opt \
     && $IDP_SRC/bin/install.sh \
@@ -65,27 +65,27 @@ RUN wget -q https://shibboleth.net/downloads/identity-provider/$idp_version/shib
     && rm -rf shibboleth-identity-provider-$idp_version
 
 # slf4j - Download, verify and install
-RUN wget -q https://repo1.maven.org/maven2/org/slf4j/slf4j-api/$slf4j_version/slf4j-api-$slf4j_version.jar \
+RUN curl -sO https://repo1.maven.org/maven2/org/slf4j/slf4j-api/$slf4j_version/slf4j-api-$slf4j_version.jar \
     && echo "$slf4j_hash  slf4j-api-$slf4j_version.jar" | sha256sum -c - \
     && mv slf4j-api-$slf4j_version.jar $JETTY_BASE/lib/logging/
 
 # logback_classic - Download verify and install
-RUN wget -q https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/$logback_version/logback-classic-$logback_version.jar \
+RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/$logback_version/logback-classic-$logback_version.jar \
     && echo "$logback_classic_hash  logback-classic-$logback_version.jar" | sha256sum -c - \
     && mv logback-classic-$logback_version.jar $JETTY_BASE/lib/logging/
 
 # logback-core - Download, verify and install
-RUN wget -q https://repo1.maven.org/maven2/ch/qos/logback/logback-core/$logback_version/logback-core-$logback_version.jar \
+RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-core/$logback_version/logback-core-$logback_version.jar \
     && echo "$logback_core_hash  logback-core-$logback_version.jar" | sha256sum -c - \
     && mv logback-core-$logback_version.jar $JETTY_BASE/lib/logging/
 
 # logback-access - Download, verify and install
-RUN wget -q https://repo1.maven.org/maven2/ch/qos/logback/logback-access/$logback_version/logback-access-$logback_version.jar \
+RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-access/$logback_version/logback-access-$logback_version.jar \
     && echo "$logback_access_hash  logback-access-$logback_version.jar" | sha256sum -c - \
     && mv logback-access-$logback_version.jar $JETTY_BASE/lib/logging/
 
 # mariadb-java-client - Donwload, verify and install
-RUN wget -q https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/$mariadb_version/mariadb-java-client-$mariadb_version.jar \
+RUN curl -sO https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/$mariadb_version/mariadb-java-client-$mariadb_version.jar \
     && echo "$mariadb_hash  mariadb-java-client-$mariadb_version.jar" | sha256sum -c - \
     && mv mariadb-java-client-$mariadb_version.jar $IDP_HOME/edit-webapp/WEB-INF/lib/
 
