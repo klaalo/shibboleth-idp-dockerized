@@ -115,8 +115,7 @@ FROM alpine:latest
 
 RUN apk --no-cache add openjdk11-jre-headless bash curl
 
-LABEL maintainer="CSCfi"\
-    idp.java.version="Alpine - openjdk11-jre-headless" \
+LABEL idp.java.version="Alpine - openjdk11-jre-headless" \
     idp.jetty.version=$jetty_version \
     idp.version=$idp_version
 
