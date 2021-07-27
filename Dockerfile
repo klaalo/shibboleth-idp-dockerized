@@ -28,7 +28,8 @@ ENV JETTY_HOME=/opt/jetty-home \
     IDP_SEALER_PASSWORD=idpsealerpwd \
     PATH=$PATH:$JAVA_HOME/bin
 
-LABEL idp.java.version="Alpine - openjdk11-jre-headless" \
+LABEL maintainer="CSCfi"\
+      idp.java.version="Alpine - openjdk11-jre-headless" \
       idp.jetty.version=$jetty_version \
       idp.version=$idp_version
 
