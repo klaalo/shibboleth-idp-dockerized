@@ -5,7 +5,6 @@ ENV jetty_version=9.4.43.v20210629 \
     idp_version=4.1.3 \
     idp_hash=3aed4aadab89de1560559df4df433e79b9be4731b9235b4557f4198734bad64f \
     idp_oidcext_version=3.0.1 \
-    idp_oidcext_hash=9dead8744660b69459880ed347a2340530260e9aee5fc69254845be100d1ebaf \
     idp_oidc_common_version=1.1.0 \
     slf4j_version=1.7.29 \
     slf4j_hash=47b624903c712f9118330ad2fb91d0780f7f666c3f22919d0fc14522c5cad9ea \
