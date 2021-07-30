@@ -46,6 +46,8 @@ RUN mkdir -p $JETTY_BASE/modules $JETTY_BASE/lib/ext $JETTY_BASE/lib/logging $JE
     && touch start.ini \
     && $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar --create-startd --add-to-start=http2,http2c,deploy,ext,annotations,jstl,rewrite,setuid
 
+COPY runclass-override.sh /opt/
+
 # Shibboleth IdP - Download, verify hash and install
 RUN curl -sO https://shibboleth.net/downloads/identity-provider/$idp_version/shibboleth-identity-provider-$idp_version.tar.gz \
     && echo "$idp_hash  shibboleth-identity-provider-$idp_version.tar.gz" | sha256sum -c - \
@@ -61,7 +63,9 @@ RUN curl -sO https://shibboleth.net/downloads/identity-provider/$idp_version/shi
     -Didp.keystore.password=$IDP_KEYSTORE_PASSWORD \
     -Didp.entityID=$IDP_ENTITYID \
     && rm shibboleth-identity-provider-$idp_version.tar.gz \
-    && rm -rf shibboleth-identity-provider-$idp_version
+    && rm -rf shibboleth-identity-provider-$idp_version \
+    && mv -f /opt/runclass-override.sh /opt/shibboleth-idp/bin/runclass.sh \
+    && chmod ug+x /opt/shibboleth-idp/bin/runclass.sh
 
 # slf4j - Download, verify and install
 RUN curl -sO https://repo1.maven.org/maven2/org/slf4j/slf4j-api/$slf4j_version/slf4j-api-$slf4j_version.jar \
