@@ -2,7 +2,9 @@
 
 ## Overview
 
-This Docker image contains a deployed Shibboleth IdP 4.0.1 running on OpenJDK11-headless and Jetty  9.4.29.v20200521 running on the latest Alpine base. This image is a base image and should be used to set the configuration with local changes.
+This Docker image contains a deployed Shibboleth IdP running on OpenJDK11-headless and Jetty running on the latest Alpine base. This image is a base image and should be used to set the configuration with local changes.
+
+Refer to Dockerfile for current versions.
 
 Every component (Java, Jetty, Shibboleth IdP, and extensions) in this image is verified using cryptographic hashes obtained from each vendor and stored in the `Dockerfile` directly. This makes the build essentially deterministic.
 
@@ -181,6 +183,10 @@ This project was originally developed as part of Unicon's [Open Source Support p
 Unicon discontinued to maintain this image, I desided to fork this repository and modify it accordingly by our current needs and changes.
 
 - Sami Silén (<sami.silen@csc.fi>)
+
+I needed latest versions so another fork has emerged. I try to follow CSC guys as much as I can as they do awesome work over there. But I can't quarantine that this gets updated, so you should follow CSC's version.
+
+- Kari Laalo (you know how to reach me)
 
 ## LICENSE
 
