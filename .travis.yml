@@ -14,4 +14,4 @@ after_script:
 
 debloy:
   provider: script
-  script: push-script.sh
+  script: bash push-script.sh
