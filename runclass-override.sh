@@ -22,9 +22,10 @@ if [ -z "$JAVACMD" ] ; then
 fi
 
 if [[ ! -x "$JAVACMD" ]] ; then
-  echo "Error: JAVA_HOME is not defined correctly."
-  echo "  We cannot execute $JAVACMD"
-  exit 1
+  echo "Error: JAVA_HOME check fails."
+  echo "  $JAVACMD seems not to be executable"
+  echo "  Although resuming as there seems to be some error in executable check."
+  #exit 1
 fi
 
 if [ -n "$CLASSPATH" ] ; then
