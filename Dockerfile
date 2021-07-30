@@ -25,9 +25,8 @@ ENV JETTY_HOME=/opt/jetty-home \
     IDP_HOST_NAME=idp.example.org \
     IDP_ENTITYID=https://idp.example.org/idp/shibboleth \
     IDP_KEYSTORE_PASSWORD=idpkstorepwd \
-    IDP_SEALER_PASSWORD=idpsealerpwd \
-    PATH=$JAVA_HOME/bin:$PATH
-
+    IDP_SEALER_PASSWORD=idpsealerpwd
+    
 LABEL idp.java.version="Alpine - openjdk11-jre-headless" \
       idp.jetty.version=$jetty_version \
       idp.version=$idp_version
