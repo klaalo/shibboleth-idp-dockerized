@@ -15,3 +15,5 @@ after_script:
 debloy:
   provider: script
   script: bash push-script.sh
+  on:
+    branch: master
