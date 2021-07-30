@@ -13,4 +13,6 @@ after_script:
   - docker-compose down
 
 debloy:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push klaalo/shibboleth-idp
+  provider: script
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push klaalo/shibboleth-idp
