@@ -1,4 +1,4 @@
-FROM alpine:latest as temp
+FROM alpine:3.14.0 as temp
 
 ENV jetty_version=9.4.43.v20210629 \
     jetty_hash=01fae654b09932e446019aa859e7af6e05e27dbade12b54cd7bae3249fc723d9 \
@@ -111,7 +111,7 @@ RUN mkdir $JETTY_BASE/logs \
     && chmod -R 550 $IDP_HOME \
     && chmod -R 775 $IDP_HOME/metadata
 
-FROM alpine:latest
+FROM alpine:3.14.0
 
 RUN apk --no-cache add openjdk11-jre-headless bash curl
 
