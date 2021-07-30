@@ -2,8 +2,8 @@ FROM alpine:3.14.0 as temp
 
 ENV jetty_version=9.4.43.v20210629 \
     jetty_hash=01fae654b09932e446019aa859e7af6e05e27dbade12b54cd7bae3249fc723d9 \
-    idp_version=4.1.3 \
-    idp_hash=3aed4aadab89de1560559df4df433e79b9be4731b9235b4557f4198734bad64f \
+    idp_version=4.1.4 \
+    idp_hash=65429f547a7854b30713d86ba5901ca718eae91efb3e618ee11108be59bf8a29 \
     idp_oidcext_version=3.0.1 \
     idp_oidc_common_version=1.1.0 \
     slf4j_version=1.7.29 \
