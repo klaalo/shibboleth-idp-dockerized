@@ -15,4 +15,4 @@ after_script:
 debloy:
   provider: script
   script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push klaalo/shibboleth-idp
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker build -t klaalo/shibboleth-idp . && docker push klaalo/shibboleth-idp
