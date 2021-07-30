@@ -46,6 +46,9 @@ RUN mkdir -p $JETTY_BASE/modules $JETTY_BASE/lib/ext $JETTY_BASE/lib/logging $JE
     && touch start.ini \
     && $JAVA_HOME/bin/java -jar $JETTY_HOME/start.jar --create-startd --add-to-start=http2,http2c,deploy,ext,annotations,jstl,rewrite,setuid
 
+## This is just a temporary override to tackle problems with executable check in the
+##  original script in some environments
+##  see original: https://git.shibboleth.net/view/?p=java-identity-provider.git;a=blob;f=idp-distribution/src/main/resources/bin/runclass.sh;hb=HEAD
 COPY runclass-override.sh /opt/
 
 # Shibboleth IdP - Download, verify hash and install
