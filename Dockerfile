@@ -31,7 +31,7 @@ LABEL idp.java.version="Alpine - openjdk11-jre-headless" \
       idp.jetty.version=$jetty_version \
       idp.version=$idp_version
 
-RUN apk --no-cache add tar openjdk11-jre-headless bash gawk gnupg curl
+RUN apk --no-cache add tar openjdk11-jre-headless bash gawk gnupg curl file
 
 # JETTY - Download, verify and install with base
 RUN curl -sO https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/$jetty_version/jetty-distribution-$jetty_version.tar.gz \
