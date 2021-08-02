@@ -25,7 +25,7 @@ if [[ ! -x "$JAVACMD" ]] ; then
   echo "Error: JAVA_HOME check fails."
   echo "  $JAVACMD seems not to be executable"
   echo "    file output: $(file ${JAVACMD})"
-  echo "    ls -l output: $(ls -l ${JAVACMD}"
+  echo "    ls -l output: $(ls -l ${JAVACMD})"
   echo "  Although resuming as there seems to be some error in executable check."
   #exit 1
 fi
