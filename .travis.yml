@@ -12,7 +12,7 @@ script:
 after_script:
   - docker-compose down
 
-debloy:
+deploy:
   provider: script
   script: bash push-script.sh
   on:
