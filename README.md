@@ -6,7 +6,7 @@ This is heavy handedly slimmed down image from Shibboleth Identity Provider soft
 
 Refer to [Dockerfile](Dockerfile) for details of current version. Image is not actively maintained. If you find it lagging behind, please do your [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
-Currently the purpose of this repository is to provide an image in [Dockerhub](https://hub.docker.com/repository/docker/klaalo/shibboleth-idp) that is somewhat automatically updated using [Travis](https://travis-ci.org). I use it to develop Shibboleth IdP based services further.
+Currently the purpose of this repository is to provide an image in [Dockerhub](https://hub.docker.com/r/klaalo/shibboleth-idp/tags) that is somewhat automatically updated using [Travis](https://travis-ci.org). I use it to develop Shibboleth IdP based services further.
 
 You may find some other purpose. If you do, please [tell us](https://www.linkedin.com/company/weare-solutions-oy/mycompany/) about it in some imaginative way!
 
