@@ -6,12 +6,15 @@ services:
 before_script:
   - >
       docker build -t idp . &&
-      docker run --rm -p 8080:8080 --name idp -t idp
+      docker run --rm -p 8080:8080 --name idp -d -t idp
 
 script:
   - >
-      IDP_VERSION=$(sed -rn 's/.*idp_version=([0-9]\.[0-9]\.[0-9]).*/\1/p' Dockerfile) &&
+      sleep 30 &&
       docker exec -ti idp curl localhost:8080/idp/status
+
+after_script: 
+  - docker stop idp
 
 deploy:
   provider: script
