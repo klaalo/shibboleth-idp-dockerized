@@ -5,4 +5,5 @@ docker build -t ${DOCKER_USERNAME}/shibboleth-idp .
 docker push ${DOCKER_USERNAME}/shibboleth-idp
 # Push tagged version
 echo "Info: Pushing with version tag: ${IDP_VERSION}"
+docker build -t ${DOCKER_USERNAME}/shibboleth-idp:${IDP_VERSION} .
 docker push ${DOCKER_USERNAME}/shibboleth-idp:${IDP_VERSION}
