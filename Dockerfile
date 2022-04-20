@@ -26,7 +26,7 @@ ENV IDP_SRC=/opt/shibboleth-identity-provider-$idp_version \
 # Switch to root during installations and configurations
 USER root
 RUN apt update
-RUN apt install -y curl gnupg less
+RUN apt install -y curl gnupg
 
 # JETTY Configure
 RUN mkdir -p $JETTY_BASE/modules $JETTY_BASE/lib/ext $JETTY_BASE/lib/logging $JETTY_BASE/resources \
