@@ -6,11 +6,11 @@ services:
 before_script:
   - >
       docker build -t idp . &&
-      docker run --rm -p 8080:8080 --name idp -d -it idp
+      docker run --rm -p 8080:8080 --name idp -d -t idp
 
 script:
   - >
-      sleep 30 &&
+      docker logs -f --until=20s idp  &&
       docker exec -ti idp curl localhost:8080/idp/status
 
 after_script: 
