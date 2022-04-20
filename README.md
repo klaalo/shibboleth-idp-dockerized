@@ -24,13 +24,19 @@ This project was originally developed as part of Unicon's [Open Source Support p
 
 - John Gasper (<jgasper@unicon.net>)
 
-Unicon discontinued to maintain this image, I desided to fork this repository and modify it accordingly by our current needs and changes.
+Unicon discontinued to maintain this image. They were the first implementors on this.
 
 - Sami Silén (<sami.silen@csc.fi>)
 
-I needed latest versions so another fork has emerged. I try to follow CSC guys as much as I can as they do awesome work over there. But I can't quarantine that this gets updated, so you should follow CSC's version.
+CSC guys have done quite a lot around this after Unicon.
+
+- Juho Erkkilä (awesome devOps automation pipeline guru in Weare)
+
+Juho has done lot of work in improving the [Dockerfile](Dockerfile)
 
 - Kari Laalo (you know how to reach me)
+
+I just try to glue things together somehow
 
 ## LICENSE
 
