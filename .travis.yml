@@ -6,7 +6,7 @@ services:
 before_script:
   - >
       docker build -t idp . &&
-      docker run --rm -p 8080:8080 --name idp -d -t idp
+      docker run --rm -p 8080:8080 --name idp -d -it idp
 
 script:
   - >
