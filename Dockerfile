@@ -2,7 +2,7 @@ FROM jetty:9-jdk11-slim as base
 
 ARG idp_version=4.2.1
 ARG idp_hash=fa5e46d160f6b1bc50326c1a31627a05b5d0847b8f620d7f4c0251999b806474
-ARG idp_oidcext_version=3.1.0
+ARG idp_oidcext_version=3.1.1
 ARG idp_oidc_common_version=2.0.0
 ARG slf4j_version=1.7.29
 ARG slf4j_hash=47b624903c712f9118330ad2fb91d0780f7f666c3f22919d0fc14522c5cad9ea
