@@ -10,3 +10,4 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         short-description: ${{ github.event.repository.description }}
+        readme-filepath: /workspace/README.md
