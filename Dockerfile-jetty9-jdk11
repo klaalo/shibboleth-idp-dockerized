@@ -78,7 +78,7 @@ RUN curl -s https://shibboleth.net/downloads/PGP_KEYS | gpg --import && \
 
 EXPOSE 8080 8443
 
-COPY jetty-base/ $JETTY_BASE/
+COPY jetty9-base/ $JETTY_BASE/
 
 #establish a healthcheck command so that docker might know the container's true state
 HEALTHCHECK --interval=1m --timeout=30s \
