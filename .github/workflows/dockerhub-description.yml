@@ -1,5 +1,10 @@
 name: Docker Hub Description
-on: [workflow_dispatch, push]
+on: 
+  workflow_dispatch:
+  push:
+    paths:
+      - README.md
+      - .github/workflows/dockerhub-description.yml
 
 jobs:
   dockerHubDescription:
