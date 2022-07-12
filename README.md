@@ -70,4 +70,4 @@ I just try to glue things together somehow
 
 ## LICENSE
 
-This has come quite far from original Unicon implementation, so I dared to alter this section. [See LICENSE file](LICENSE) for further details.
+This has come quite far from original Unicon implementation, so I dared to alter this section. [See LICENSE file](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/LICENSE) for further details.
