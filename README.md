@@ -14,6 +14,11 @@ Currently the purpose of this repository is to provide an image in [Dockerhub](h
 
 You may find some other purpose. If you do, please [tell us](https://www.weare.fi/en/contact-us/) about it in some imaginative way!
 
+## Supported tags
+
+* [4.2.1](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile)
+* [4.2.1-jetty-9-jdk11](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/jetty9-jdk11/Dockerfile)
+
 ## Creating a Shibboleth IdP Configuration
 
 The old mechanism of creating an IdP configuration has been removed from this image. Shibboleth Project doesn't yet maintain or support an official Docker Deployment method for the product, so you will need expertiese in the product to implement working installation using Docker anyhow. So basically what I'm saying is that don't rely on this image if you are not familiar with the Shibboleth product.
