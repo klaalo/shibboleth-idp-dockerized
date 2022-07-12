@@ -17,7 +17,7 @@ build () {
 ### Build latest
 #
 echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-docker build -t ${DOCKER_USERNAME}/shibboleth-idp .
+docker build -t ${DOCKER_USERNAME}/shibboleth-idp ./latest/
 docker push ${DOCKER_USERNAME}/shibboleth-idp
 
 #####
