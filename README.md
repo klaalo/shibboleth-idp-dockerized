@@ -4,7 +4,7 @@
 
 This is heavy handedly slimmed down image from Shibboleth Identity Provider software previously built based on [CSC fork](https://github.com/CSCfi/shibboleth-idp-dockerized) of original [Unicon image](https://github.com/Unicon/shibboleth-idp-dockerized) that has not been updated since.
 
-Refer to [Dockerfile](Dockerfile) for details of current version. Image is not actively maintained. If you find it lagging behind, please do your [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
+Refer to [Dockerfile](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile) for details of current version. Image is not actively maintained. If you find it lagging behind, please do your [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
 Currently the purpose of this repository is to provide an image in [Dockerhub](https://hub.docker.com/r/klaalo/shibboleth-idp/tags) that is somewhat automatically updated using [Travis](https://travis-ci.org). I use it to develop Shibboleth IdP based services further.
 
@@ -26,7 +26,7 @@ See more info about System Requirements in [Shibboleth Wiki](https://shibboleth.
 
 ### Nashorn in new Java versions
 
-Make note that Nashorn engine was removed starting from Java 15. As it is quite essential part in Shibboleth in many attribute-reslover implementations, it was decided to be added manually in this image. There is special task related to this in the [Dockerfile](latest/Dockerfile#L78). We are very interested in hearing your comments and receiving your pull requests regarding this decision. Read more in [this LinkedIn article](https://www.linkedin.com/pulse/nashorn-removed-kari-laalo/).
+Make note that Nashorn engine was removed starting from Java 15. As it is quite essential part in Shibboleth in many attribute-reslover implementations, it was decided to be added manually in this image. There is special task related to this in the [Dockerfile](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile#L78). We are very interested in hearing your comments and receiving your pull requests regarding this decision. Read more in [this LinkedIn article](https://www.linkedin.com/pulse/nashorn-removed-kari-laalo/).
 
 ### TLS not included
 
@@ -48,7 +48,7 @@ CSC guys have done quite a lot around this after Unicon.
 
 - Juho Erkkilä (awesome devOps automation pipeline guru in Weare)
 
-Juho has done lot of work in improving the [Dockerfile](Dockerfile)
+Juho has done lot of work in improving the [Dockerfile](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile)
 
 - Kari Laalo (you know how to reach me)
 
