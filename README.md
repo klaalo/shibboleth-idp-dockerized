@@ -6,7 +6,7 @@ This is heavy handedly slimmed down image from Shibboleth Identity Provider soft
 
 Refer to [Dockerfile](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile) for details of current version. We do not promise active maintenance unless otherwise specifically agree. If you find images lagging behind, please do update: 
 
-<a href="https://github.com/login?return_to=%2Fklaalo%2Fshibboleth-idp-dockerized">
+<a href="https://github.com/klaalo/shibboleth-idp-dockerized/fork">
     <img src="https://misc.karilaalo.fi/pics/icons8-git.svg" />
 </a>
 
