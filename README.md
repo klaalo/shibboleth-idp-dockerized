@@ -26,7 +26,7 @@ See more info about System Requirements in [Shibboleth Wiki](https://shibboleth.
 
 ### Nashorn in new Java versions
 
-Make note that Nashorn engine was removed starting from Java 15. As it is quite essential part in Shibboleth in many attribute-reslover implementations, it was decided to be added manually in this image. There is special task related to this in the [Dockerfile](latest/Dockerfile). We are very interested in hearing your comments and receiving your pull requests regarding this decision. Read more in [this LinkedIn article](https://www.linkedin.com/pulse/nashorn-removed-kari-laalo/).
+Make note that Nashorn engine was removed starting from Java 15. As it is quite essential part in Shibboleth in many attribute-reslover implementations, it was decided to be added manually in this image. There is special task related to this in the [Dockerfile](latest/Dockerfile#L78). We are very interested in hearing your comments and receiving your pull requests regarding this decision. Read more in [this LinkedIn article](https://www.linkedin.com/pulse/nashorn-removed-kari-laalo/).
 
 ### TLS not included
 
