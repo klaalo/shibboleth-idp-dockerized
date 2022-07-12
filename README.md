@@ -25,7 +25,13 @@ The old mechanism of creating an IdP configuration has been removed from this im
 
 ## Using the Image
 
-On top of this image you will need something else, some other layer to make this runnable in your environment.
+On top of this image you will need something else, some other layer to configure it and make it runnable in your environment. If you only want to try or see it out, do:
+
+    docker run --rm -p 8080:8080 --name shibboleth-idp -it klaalo/shibboleth-idp
+
+Then, optionnally, access the container with:
+
+    docker exec -it shibboleth-idp /bin/bash
 
 ## Two versions available
 
