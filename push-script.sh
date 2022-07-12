@@ -5,11 +5,8 @@
 #
 
 build () {
-    TAG=$1
-    echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-    docker build -t ${DOCKER_USERNAME}/shibboleth-idp .
-    docker push ${DOCKER_USERNAME}/shibboleth-idp
     # Push tagged version
+    TAG=$1
     echo "Info: ----> Pushing with version tag: ${TAG}"
     docker build -t ${DOCKER_USERNAME}/shibboleth-idp:${TAG} $2
     docker push ${DOCKER_USERNAME}/shibboleth-idp:${TAG}
@@ -18,6 +15,13 @@ build () {
 
 #####
 ### Build latest
+#
+echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+docker build -t ${DOCKER_USERNAME}/shibboleth-idp .
+docker push ${DOCKER_USERNAME}/shibboleth-idp
+
+#####
+### Push Jetty v10 version
 #
 IDP_VERSION=$(sed -rn 's/.*idp_version=([0-9]\.[0-9]\.[0-9]).*/\1/p' Dockerfile)
 build ${IDP_VERSION} Dockerfile
