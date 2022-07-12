@@ -54,6 +54,11 @@ Juho has done lot of work in improving the [Dockerfile](Dockerfile)
 
 I just try to glue things together somehow
 
+### Credits
+
+Social preview image in Github [Photo by FLY:D](https://unsplash.com/@flyd2069?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) [on Unsplash](https://unsplash.com/s/photos/cyber-security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText).
+  
+
 ## LICENSE
 
 This has come quite far from original Unicon implementation, so I dared to alter this section. [See LICENSE file](LICENSE) for further details.
