@@ -49,6 +49,7 @@ Few other references for your convenience:
 * [OWASP Community Access Control guideline](https://owasp.org/www-community/Access_Control)
 * [CISA Essentials Starter Kit](https://www.cisa.gov/sites/default/files/publications/Cyber%20Essentials%20Starter%20Kit_03.12.2021_508_0.pdf)
 * [NIST 80-53r5](https://csrc.nist.gov/CSRC/media/Projects/risk-management/800-53%20Downloads/800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf)
+* [VAHTI 1/2013 SNT-011](https://www.suomidigi.fi/sites/default/files/2020-06/Vahti_ohje_1_2013_pdf_0.pdf)
 
 ## Two versions available
 
