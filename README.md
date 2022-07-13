@@ -35,6 +35,21 @@ Then, optionnally, access the container with:
 
     docker exec -it shibboleth-idp /bin/bash
 
+### Do not run Jetty as root
+
+There has been consideration wether this basic image should have `USER jetty` [instruction](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user) included. Currently it is a deliberate decision to leave it out from this base image. However, this can not be emphasized too much, hence, we will repeat it:
+
+**DO NOT RUN Jetty as ROOT**
+
+Some argumentation and reasoning behind our decision for not including root privilege revocation during base image build can be found in previously linked [Docker reference](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user). Make note also that Jetty base image does not do privilege revocation, but leaves that for user discretion (see section Security in image [reference](https://hub.docker.com/_/jetty/)).
+
+To make this sink in we say also this again: you need to implement another layer on top of this image before deploying the service to production use in your case and your environment. At that layer at latest you should apply some mechanism to enforce [least privilege principle](https://en.wikipedia.org/wiki/Principle_of_least_privilege). It may very well be that you need to fork our example of image build and better suit it to your needs to meet another Docker best practice that suggests to [minimise the layers](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#minimize-the-number-of-layers) in Docker images.
+
+Few other references for your convenience:
+* [OWASP Community Access Control guideline](https://owasp.org/www-community/Access_Control)
+* [CISA Essentials Starter Kit](https://www.cisa.gov/sites/default/files/publications/Cyber%20Essentials%20Starter%20Kit_03.12.2021_508_0.pdf)
+* [NIST 80-53r5](https://csrc.nist.gov/CSRC/media/Projects/risk-management/800-53%20Downloads/800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf)
+
 ## Two versions available
 
 Build script makes two image versions available. There is currently default `Dockerfile` that uses Jetty v10 in Amazon Corretto jdk17 from [official Jetty Docker image](https://github.com/eclipse/jetty.docker/blob/c4346b6881f54541a36aeddaf77c71004cc0d32a/amazoncorretto/10.0/jdk17/Dockerfile). In addition the old image version is available that uses Jetty v9 in jdk11 also from [official Jetty Docker image](https://github.com/eclipse/jetty.docker/blob/c4346b6881f54541a36aeddaf77c71004cc0d32a/openjdk/9.4/jdk11-slim/Dockerfile).
