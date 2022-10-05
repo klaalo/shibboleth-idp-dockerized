@@ -12,13 +12,27 @@ build () {
     docker push ${DOCKER_USERNAME}/shibboleth-idp:${TAG}
 }
 
+build_multiarch() {
+    # Push tagged version
+    TAG=$1
+    echo "Info: ----> Pushing multi-arch image with version tag: ${TAG}"
+    docker buildx build \
+    --push \
+    --platform linux/arm/v7,linux/arm64/v8,linux/amd64 \
+    --tag ${DOCKER_USERNAME}/shibboleth-idp:${TAG} .
+}
+
 
 #####
 ### Build latest
 #
 echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-docker build -t ${DOCKER_USERNAME}/shibboleth-idp ./latest/
-docker push ${DOCKER_USERNAME}/shibboleth-idp
+docker buildx create --use
+
+build_multiarch ${DOCKER_USERNAME}/shibboleth-idp ./latest/
+
+#docker build -t ${DOCKER_USERNAME}/shibboleth-idp ./latest/
+#docker push ${DOCKER_USERNAME}/shibboleth-idp
 
 #####
 ### Push Jetty v10 version
