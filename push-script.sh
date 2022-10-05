@@ -18,7 +18,7 @@ build_multiarch() {
     echo "Info: ----> Pushing multi-arch image with version tag: ${TAG}"
     docker buildx build \
     --push \
-    --platform linux/arm/v7,linux/arm64/v8,linux/amd64 \
+    --platform linux/arm64/v8,linux/amd64 \
     --tag ${DOCKER_USERNAME}/shibboleth-idp:${TAG} .
 }
 
