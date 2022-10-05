@@ -46,7 +46,7 @@ RUN curl -sO https://shibboleth.net/downloads/identity-provider/$idp_version/shi
     -Didp.sealer.password=$IDP_SEALER_PASSWORD \
     -Didp.keystore.password=$IDP_KEYSTORE_PASSWORD \
     -Didp.entityID=$IDP_PUBLIC_URL \
-    && rm shibboleth-identity-provider-$idp_version.tar.gz \
+    && rm shibboleth-identity-provider-$idp_version.tar \
     && rm -rf /opt/shibboleth-identity-provider-$idp_version
 
 # slf4j - Download, verify and install
